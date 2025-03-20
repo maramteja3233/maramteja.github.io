@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teja Maram - Angular UI Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --accent-color: #e74c3c;
+            --text-color: #ecf0f1;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --section-bg: #1a1a1a;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--dark-bg);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 20px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            background-color: rgba(18, 18, 18, 0.95);
+            transition: var(--transition);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 30px;
+        }
+        
+        .nav-link {
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-color);
+            margin: 5px 0;
+            transition: var(--transition);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.7)), 
+                        url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            animation: fadeInUp 1s ease;
+        }
+        
+        .typed-cursor {
+            color: var(--primary-color);
+        }
+        
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+            animation: fadeIn 1.5s ease;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--text-color);
+            font-size: 14px;
+            animation: fadeIn 2s ease infinite;
+        }
+        
+        .scroll-down span {
+            margin-bottom: 10px;
+        }
+        
+        .scroll-down i {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--section-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+        }
+        
+        .section-title span {
+            color: var(--primary-color);
+        }
+        
+        .about-content {
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-img {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: #b0b0b0;
+        }
+        
+        .about-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .info-item {
+            display: flex;
+        }
+        
+        .info-item i {
+            width: 30px;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .download-cv {
+            margin-top: 20px;
+        }
+        
+        /* Experience Section */
+        .experience {
+            padding: 100px 0;
+            background-color: var(--dark-bg);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            animation: fadeIn 1s ease;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--dark-bg);
+            border: 3px solid var(--primary-color);
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -13px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -13px;
+        }
+        
+        .timeline-content {
+            padding: 30px;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-position {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #b0b0b0;
+        }
+        
+        .timeline-description ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .timeline-description li {
+            margin-bottom: 10px;
+            color: #b0b0b0;
+        }
+        
+        .timeline-tech {
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        /* Skills Section */
+        .skills {
+            padding: 100px 0;
+            background-color: var(--section-bg);
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+        
+        .skills-category {
+            margin-bottom: 40px;
+        }
+        
+        .skills-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-item {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: default;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .skill-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .skill-level-bar {
+            height: 8px;
+            background-color: #333;
+            border-radius: 4px;
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .skill-level-progress {
+            height: 100%;
+            border-radius: 4px;
+            background-color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .skill-tags {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .skill-tag {
+            padding: 5px 10px;
+            background-color: rgba(52, 152, 219, 0.1);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        /* UX Design Section */
+        .ux-design {
+            padding: 100px 0;
+            background-color: var(--dark-bg);
+        }
+        
+        .ux-intro {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+        
+        .ux-intro p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+        
+        /* Process Section */
+        .process-title, .projects-title, .skills-title, .case-study-title {
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+        
+        .process-container {
+            display: flex;
+            align-items: center;
+            overflow-x: auto;
+            padding: 20px 0 40px;
+            margin-bottom: 40px;
+        }
+        
+        .process-item {
+            min-width: 180px;
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .process-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .process-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+        
+        .process-icon i {
+            font-size: 24px;
+            color: white;
+        }
+        
+        .process-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .process-item p {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+        
+        .process-connector {
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            width: 50px;
+            position: relative;
+        }
+        
+        .process-connector::before, .process-connector::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            top: -3px;
+        }
+        
+        .process-connector::before {
+            left: 0;
+        }
+        
+        .process-connector::after {
+            right: 0;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-image {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(52, 152, 219, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .view-details {
+            padding: 10px 20px;
+            background-color: white;
+            color: var(--primary-color);
+            border-radius: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .view-details:hover {
+            background-color: var(--dark-bg);
+            color: white;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .project-tags span {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--primary-color);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+        
+        .project-description {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* UX Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .skill-box {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            display: flex;
+            gap: 20px;
+            transition: var(--transition);
+        }
+        
+        .skill-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .skill-icon i {
+            font-size: 20px;
+            color: white;
+        }
+        
+        .skill-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .skill-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .skill-info li {
+            color: #b0b0b0;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .skill-info li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Case Study */
+        .case-study-container {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .case-study-header {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .case-study-image {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .case-study-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .case-study-brief {
+            padding: 30px;
+            background: linear-gradient(to right, rgba(41, 128, 185, 0.2), rgba(52, 152, 219, 0.1));
+        }
+        
+        .case-study-brief h4 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .case-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .meta-label {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            margin-bottom: 5px;
+        }
+        
+        .meta-value {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .case-study-content {
+            padding: 40px;
+        }
+        
+        .case-section {
+            margin-bottom: 40px;
+        }
+        
+        .case-section h5 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .case-section p {
+            color: #b0b0b0;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        /* Research Insights */
+        .research-insights {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .insight-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .insight-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .insight-icon i {
+            font-size: 16px;
+            color: white;
+        }
+        
+        .insight-content h6 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        
+        .insight-content p {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            margin-bottom: 0;
+        }
+        
+        /* Process Timeline */
+        .process-timeline {
+            margin-top: 30px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-item:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background-color: rgba(52, 152, 219, 0.3);
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-content h6 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 15px;
+        }
+        
+        .timeline-image {
+            margin-top: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .timeline-image img {
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Results */
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .result-card {
+            background: linear-gradient(to bottom right, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.2));
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .result-label {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: linear-gradient(to right, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.7)), 
+                        url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 60px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 30px;
+            color: #b0b0b0;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border-radius: 4px;
+            border: none;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .copyright {
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+        
+        .back-to-top {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                margin-bottom: 40px;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .contact-info {
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--dark-bg);
+                flex-direction: column;
+                padding: 50px 0;
+                transition: var(--transition);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .copyright {
+                margin-bottom: 20px;
+            }
+            
+            /* UX Design Responsive */
+            .process-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .process-item {
+                margin-bottom: 20px;
+            }
+            
+            .process-connector {
+                width: 2px;
+                height: 30px;
+                margin: 0 auto;
+            }
+            
+            .process-connector::before, .process-connector::after {
+                left: -3px;
+                width: 8px;
+                height: 8px;
+            }
+            
+            .process-connector::before {
+                top: 0;
+            }
+            
+            .process-connector::after {
+                top: auto;
+                bottom: 0;
+            }
+            
+            .research-insights, .results-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study-header {
+                flex-direction: column;
+            }
+            
+            .case-meta {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">TM</a>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#ux-design" class="nav-link">UX Design</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <button class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Teja Maram</h1>
+                <h2 class="hero-subtitle">
+                    <span id="typed"></span>
+                </h2>
+                <p class="hero-description">
+                    Experienced UI developer with 9+ years specializing in Angular (14+, including recent exposure to Angular 18), developing enterprise-scale responsive and cross-platform web applications using Micro Frontend Architecture.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn">Get In Touch</a>
+                    <a href="#experience" class="btn btn-outline">View Experience</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <span>Scroll Down</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About <span>Me</span></h2>
+            
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1603575448878-868a20723f5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Teja Maram">
+                </div>
+                
+                <div class="about-text">
+                    <h3>UI Developer with 9+ Years of Experience</h3>
+                    <p>
+                        I'm a highly skilled UI Developer specializing in Angular development with extensive experience in building enterprise-scale applications using the latest technologies and best practices.
+                    </p>
+                    <p>
+                        My expertise spans across the entire Angular ecosystem, including RxJS, NgRx, TypeScript, and modern UI frameworks. I'm passionate about creating efficient, maintainable, and user-friendly web applications that deliver exceptional user experiences.
+                    </p>
+                    
+                    <div class="about-info">
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>Tejaui3233@gmail.com</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <span>937-985-0156</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Austin, TX</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-briefcase"></i>
+                            <span>Available for Hire</span>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn download-cv">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title">Work <span>Experience</span></h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Sep 2019 - Present</div>
+                        <h3 class="timeline-title">TXDOT</h3>
+                        <h4 class="timeline-position">Senior Angular Developer</h4>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Architected and implemented Micro Frontend (MFE) solutions using Angular 16+, achieving 60% improvement in team deployment efficiency</li>
+                                <li>Developed enterprise-scale component libraries using Angular Material and custom SCSS, implementing strict ADA/508 compliance standards</li>
+                                <li>Implemented advanced TypeScript 4+ features including decorators, generics, utility types</li>
+                                <li>Built sophisticated RxJS state management solutions for complex data handling</li>
+                                <li>Implemented comprehensive Ngrx store architecture with Effects for side-effect management</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-tech">
+                            Angular, TypeScript, RxJS, NgRx, Angular Material, Micro Frontend, SCSS, ADA/508 Compliance
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Aug 2018 - Sep 2019</div>
+                        <h3 class="timeline-title">Fidelity Investments</h3>
+                        <h4 class="timeline-position">UI/Angular Developer</h4>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Built high-performance Angular 2+ applications using standalone components and module federation</li>
+                                <li>Implemented complex TypeScript patterns including mapped types, conditional types, and generic constraints</li>
+                                <li>Created reusable Angular Material components with custom theming and SCSS architecture</li>
+                                <li>Developed custom RxJS operators and state management solutions for real-time data synchronization</li>
+                                <li>Implemented comprehensive testing strategy using Jasmine/Karma with 80% code coverage</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-tech">
+                            Angular, TypeScript, RxJS, Redux, Jasmine, Karma, SCSS, WebSocket
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 2017 - Aug 2018</div>
+                        <h3 class="timeline-title">DMI</h3>
+                        <h4 class="timeline-position">UI/Angular Developer</h4>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Architected responsive applications using Angular 2+ features and TypeScript strict mode configurations</li>
+                                <li>Built modular component libraries with Angular Material and SCSS maxims, reducing development time by 30%</li>
+                                <li>Implemented RxJS-powered state management with custom operators</li>
+                                <li>Created performance GraphQL queries and mutations with type-safe interfaces</li>
+                                <li>Built reusable UI components following ADA compliance standards and WCAG 2.1 guidelines</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-tech">
+                            Angular, TypeScript, RxJS, GraphQL, Angular Material, SCSS, WCAG, ADA
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun 2016 - Apr 2017</div>
+                        <h3 class="timeline-title">Change HealthCare</h3>
+                        <h4 class="timeline-position">UI/Angular Developer</h4>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Led migration from AngularJS to Angular 2+, implementing modern TypeScript features</li>
+                                <li>Created reusable component library using Angular Material and custom SCSS framework</li>
+                                <li>Implemented RxJS patterns for complex data streams, including combineLatest and switchMap operators</li>
+                                <li>Built robust authentication system using guards and interceptors with JWT token management</li>
+                                <li>Created comprehensive unit test coverage using Jasmine/Karma testing framework</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-tech">
+                            Angular, AngularJS, TypeScript, RxJS, Angular Material, SCSS, Jasmine, Karma
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">My <span>Skills</span></h2>
+            
+            <div class="skills-container">
+                <div class="skills-category">
+                    <h3>Frontend Frameworks & Technologies</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-angular"></i>
+                            </div>
+                            <h4 class="skill-title">Angular</h4>
+                            <p>Expert in Angular (2+) including Angular 18, building enterprise applications</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 95%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Angular 18</span>
+                                <span class="skill-tag">Micro Frontend</span>
+                                <span class="skill-tag">Standalone Components</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <h4 class="skill-title">React</h4>
+                            <p>Knowledge of React for cross-functional team collaboration</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 75%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Hooks</span>
+                                <span class="skill-tag">Redux</span>
+                                <span class="skill-tag">JSX</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-vuejs"></i>
+                            </div>
+                            <h4 class="skill-title">Vue.js</h4>
+                            <p>Experience with Vue.js for lightweight applications</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 70%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Vue 3</span>
+                                <span class="skill-tag">Composition API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>State Management & Reactive Programming</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h4 class="skill-title">NgRx & Redux</h4>
+                            <p>Expert in implementing complex state management patterns</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 90%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Store</span>
+                                <span class="skill-tag">Effects</span>
+                                <span class="skill-tag">Entity</span>
+                                <span class="skill-tag">Selectors</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <h4 class="skill-title">RxJS</h4>
+                            <p>Advanced in reactive programming using observables</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 95%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Observables</span>
+                                <span class="skill-tag">Custom Operators</span>
+                                <span class="skill-tag">Subjects</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-signal"></i>
+                            </div>
+                            <h4 class="skill-title">Signals API</h4>
+                            <p>Experience with Angular's Signals for fine-grained reactivity</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 85%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Signal()</span>
+                                <span class="skill-tag">Computed()</span>
+                                <span class="skill-tag">Effect()</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>Web Technologies</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <h4 class="skill-title">JavaScript & TypeScript</h4>
+                            <p>Advanced expertise in TypeScript 4+ and JavaScript ES6+</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 95%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">TypeScript 4+</span>
+                                <span class="skill-tag">ES6+</span>
+                                <span class="skill-tag">Decorators</span>
+                                <span class="skill-tag">Generics</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <h4 class="skill-title">HTML5 & CSS3</h4>
+                            <p>Expert in semantic HTML and modern CSS features</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 90%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">HTML5</span>
+                                <span class="skill-tag">CSS3</span>
+                                <span class="skill-tag">SCSS</span>
+                                <span class="skill-tag">Flexbox</span>
+                                <span class="skill-tag">Grid</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-universal-access"></i>
+                            </div>
+                            <h4 class="skill-title">Accessibility (ADA/508)</h4>
+                            <p>Strong focus on building accessible applications</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 90%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">WCAG 2.1</span>
+                                <span class="skill-tag">ADA Compliance</span>
+                                <span class="skill-tag">508 Standards</span>
+                                <span class="skill-tag">Aria</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-category">
+                    <h3>UI Libraries & Tools</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h4 class="skill-title">Angular Material</h4>
+                            <p>Expert in developing with Angular Material components</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 95%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Custom Theming</span>
+                                <span class="skill-tag">Component Library</span>
+                                <span class="skill-tag">CDK</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fab fa-bootstrap"></i>
+                            </div>
+                            <h4 class="skill-title">Bootstrap & Tailwind</h4>
+                            <p>Proficient in modern CSS frameworks</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 85%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Bootstrap 5</span>
+                                <span class="skill-tag">Tailwind CSS</span>
+                                <span class="skill-tag">Responsive Design</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="skill-icon">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <h4 class="skill-title">Version Control & CI/CD</h4>
+                            <p>Extensive experience with Git and CI/CD pipelines</p>
+                            <div class="skill-level-bar">
+                                <div class="skill-level-progress" style="width: 90%;"></div>
+                            </div>
+                            <div class="skill-tags">
+                                <span class="skill-tag">Git/GitHub</span>
+                                <span class="skill-tag">GitHub Actions</span>
+                                <span class="skill-tag">Jenkins</span>
+                                <span class="skill-tag">AWS CI/CD</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- UX Design Section -->
+    <section id="ux-design" class="ux-design">
+        <div class="container">
+            <h2 class="section-title">UX <span>Design</span></h2>
+            
+            <div class="ux-intro">
+                <p>As a UI Developer with a passion for user experience, I create intuitive and accessible interfaces that balance aesthetic appeal with functional efficiency. My approach combines user research, wireframing, prototyping, and usability testing to deliver meaningful experiences.</p>
+            </div>
+            
+            <div class="ux-process">
+                <h3 class="process-title">My UX Process</h3>
+                <div class="process-container">
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>Research</h4>
+                        <p>Understanding user needs through interviews, surveys, and competitive analysis</p>
+                    </div>
+                    
+                    <div class="process-connector"></div>
+                    
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <h4>Information Architecture</h4>
+                        <p>Organizing content and defining user flows for intuitive navigation</p>
+                    </div>
+                    
+                    <div class="process-connector"></div>
+                    
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-pencil-ruler"></i>
+                        </div>
+                        <h4>Wireframing</h4>
+                        <p>Creating low-fidelity layouts to establish structure and functionality</p>
+                    </div>
+                    
+                    <div class="process-connector"></div>
+                    
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h4>UI Design</h4>
+                        <p>Building high-fidelity mockups with visual elements and interactions</p>
+                    </div>
+                    
+                    <div class="process-connector"></div>
+                    
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4>Implementation</h4>
+                        <p>Translating designs into responsive, accessible code with Angular</p>
+                    </div>
+                    
+                    <div class="process-connector"></div>
+                    
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <h4>Testing</h4>
+                        <p>Validating solutions through usability testing and iterative refinement</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ux-projects">
+                <h3 class="projects-title">Featured UX Projects</h3>
+                
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="/api/placeholder/800/600" alt="Enterprise Dashboard Redesign">
+                            <div class="project-overlay">
+                                <a href="#" class="view-details">View Details</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h4 class="project-title">Enterprise Dashboard Redesign</h4>
+                            <div class="project-tags">
+                                <span>User Research</span>
+                                <span>Information Architecture</span>
+                                <span>Angular</span>
+                            </div>
+                            <p class="project-description">
+                                Redesigned a complex enterprise dashboard to improve data visualization and user efficiency, resulting in a 35% reduction in task completion time.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="/api/placeholder/800/600" alt="Accessibility-Focused Component Library">
+                            <div class="project-overlay">
+                                <a href="#" class="view-details">View Details</a>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            
