@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teja Maram - Senior Frontend Developer</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-text: #4b5563;
+            --bg-color: #f9fafb;
+            --card-bg: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: var(--primary-color);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-text {
+            flex: 1;
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info {
+            margin-top: 24px;
+            display: flex;
+            gap: 24px;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--secondary-color);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 18px;
+            transition: opacity 0.2s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Section styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+        
+        /* Summary section */
+        .summary-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 18px;
+        }
+        
+        .summary-container p {
+            margin-bottom: 24px;
+        }
+        
+        /* Skills section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 32px;
+        }
+        
+        .skill-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: var(--primary-color);
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Experience section */
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background-color: var(--border-color);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 60px;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 30px;
+            left: 50%;
+        }
+        
+        .timeline-content {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            width: 100%;
+        }
+        
+        .timeline-content .date {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .timeline-content h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-content .company {
+            font-weight: 500;
+            color: var(--light-text);
+            margin-bottom: 16px;
+        }
+        
+        .timeline-content ul {
+            margin-left: 20px;
+            margin-top: 12px;
+        }
+        
+        .timeline-content li {
+            margin-bottom: 8px;
+        }
+        
+        .dot {
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+            left: calc(50% - 10px);
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even) .dot {
+            left: calc(0% - 10px);
+        }
+        
+        /* Project section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 32px;
+        }
+        
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .project-content {
+            padding: 24px;
+        }
+        
+        .project-content h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+        
+        .project-content p {
+            margin-bottom: 16px;
+            color: var(--light-text);
+        }
+        
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+        
+        .tech-tag {
+            background-color: var(--bg-color);
+            padding: 4px 10px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 24px;
+            transition: opacity 0.2s;
+        }
+        
+        .social-links a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 900px) {
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-info {
+                justify-content: center;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-right: 0;
+                padding-left: 60px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-left: 60px;
+            }
+            
+            .dot {
+                left: 10px;
+            }
+            
+            .timeline-item:nth-child(even) .dot {
+                left: 10px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+            
+            .title {
+                font-size: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container profile-container">
+            <div class="profile-image">TM</div>
+            <div class="profile-text">
+                <h1>Teja Maram</h1>
+                <div class="title">Senior Frontend Developer</div>
+                <p>Experienced UI developer with 11+ years in developing responsive and cross-platform front-end web applications.</p>
+                <div class="contact-info">
+                    <a href="tel:9379850156">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        937-985-0156
+                    </a>
+                    <a href="mailto:tejamaram445@gmail.com">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        tejamaram445@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- About/Summary Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="summary-container">
+                <p>I'm a Senior Frontend Developer with over 11 years of experience in building responsive, cross-platform web applications. My expertise spans across modern JavaScript frameworks including React.js, Angular, and related technologies.</p>
+                <p>I have successfully led projects from conception to deployment, focusing on creating high-performance SPAs with reusable component architectures. My experience includes working with REST APIs, GraphQL, and state management solutions like Redux.</p>
+                <p>I am passionate about creating optimized, user-friendly interfaces while following best practices and maintaining clean, scalable code. I thrive in Agile environments and enjoy collaborating with cross-functional teams to deliver exceptional products.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: #f0f5ff;">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <h3>Frontend Technologies</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">SCSS</span>
+                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">Responsive Design</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>JavaScript Frameworks</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">React.js</span>
+                        <span class="skill-tag">Angular</span>
+                        <span class="skill-tag">Next.js</span>
+                        <span class="skill-tag">React Native</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">jQuery</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Libraries & Ecosystem</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Redux</span>
+                        <span class="skill-tag">React Hooks</span>
+                        <span class="skill-tag">Context API</span>
+                        <span class="skill-tag">React Router</span>
+                        <span class="skill-tag">Material UI</span>
+                        <span class="skill-tag">React Query</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Testing & DevOps</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Jest</span>
+                        <span class="skill-tag">React Testing Library</span>
+                        <span class="skill-tag">Cypress</span>
+                        <span class="skill-tag">Enzyme</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">AWS</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>APIs & Data</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">GraphQL</span>
+                        <span class="skill-tag">JSON</span>
+                        <span class="skill-tag">XML</span>
+                        <span class="skill-tag">AJAX</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Design & Tools</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Adobe Photoshop</span>
+                        <span class="skill-tag">Adobe Illustrator</span>
+                        <span class="skill-tag">Sketch</span>
+                        <span class="skill-tag">Webpack</span>
+                        <span class="skill-tag">Babel</span>
+                        <span class="skill-tag">VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="timeline-content">
+                        <div class="date">Sep 2019 - Present</div>
+                        <h3>Senior Frontend Developer</h3>
+                        <div class="company">TXDOT, Austin, TX</div>
+                        <ul>
+                            <li>Designed and developed high-performance SPAs using React.js 18</li>
+                            <li>Led migration from Angular to React.js, improving performance</li>
+                            <li>Built reusable components using React Hooks and Context API</li>
+                            <li>Implemented state management solutions using Redux</li>
+                            <li>Optimized app performance by 40% through lazy loading and memoization</li>
+                            <li>Developed SSR applications using Next.js for SEO optimization</li>
+                        </ul>
+                        <div class="technologies">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="timeline-content">
+                        <div class="date">Aug 2018 - Sep 2019</div>
+                        <h3>Frontend Developer</h3>
+                        <div class="company">Fidelity Investments, New Jersey, NJ</div>
+                        <ul>
+                            <li>Developed and maintained React.js-based web applications</li>
+                            <li>Used React Router for navigation and integrated REST APIs</li>
+                            <li>Worked on Redux-based state management for complex applications</li>
+                            <li>Refactored legacy Angular codebase into React.js</li>
+                            <li>Developed UI components using Material UI and styled-components</li>
+                        </ul>
+                        <div class="technologies">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Material UI</span>
+                            <span class="tech-tag">Jest</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="timeline-content">
+                        <div class="date">May 2017 - Aug 2018</div>
+                        <h3>Frontend Developer</h3>
+                        <div class="company">DMI, Cincinnati, OH</div>
+                        <ul>
+                            <li>Built interactive and responsive React.js applications from scratch</li>
+                            <li>Created custom reusable components using React Hooks and Context API</li>
+                            <li>Implemented responsive designs with CSS3, SCSS, and Bootstrap</li>
+                            <li>Optimized performance using lazy loading and code-splitting</li>
+                            <li>Integrated Redux for centralized state management</li>
+                        </ul>
+                        <div class="technologies">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">SCSS</span>
+                            <span class="tech-tag">Jest</span>
+                            <span class="tech-tag">Enzyme</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="timeline-content">
+                        <div class="date">Jun 2016 - Apr 2017</div>
+                        <h3>UI/Front End Developer</h3>
+                        <div class="company">Change Healthcare, Nashville, TN</div>
+                        <ul>
+                            <li>Worked on user interface design using Angular2, HTML5, and CSS3</li>
+                            <li>Developed Single Page Applications with two-way data binding</li>
+                            <li>Created React/Redux UIs to enable new customer flows</li>
+                            <li>Used Angular 2.0 services to consume RESTful APIs</li>
+                            <li>Handled cross-browser compatibility issues</li>
+                        </ul>
+                        <div class="technologies">
+                            <span class="tech-tag">Angular 2</span>
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="dot"></div>
+                    <div class="timeline-content">
+                        <div class="date">Prior Experience</div>
+                        <h3>Web/UI Developer</h3>
+                        <div class="company">Prime Access & Solvent Software Solutions</div>
+                        <p>5+ years of experience building responsive web applications with HTML, CSS, JavaScript, jQuery, and various frameworks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" style="background-color: #f0f5ff;">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-img">TXDOT Dashboard</div>
+                    <div class="project-content">
+                        <h3>Interactive Transportation Dashboard</h3>
+                        <p>A high-performance React dashboard providing real-time analytics and visualizations for transportation data, handling millions of data points efficiently.</p>
+                        <p><strong>Key Contributions:</strong> Led the architecture design, implemented Redux state management, and optimized rendering performance.</p>
+                        <div class="technologies">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Chart.js</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">Fidelity Investment Portal</div>
+                    <div class="project-content">
+                        <h3>Investment Portfolio Analyzer</h3>
+                        <p>A React-based application that helps clients track investments, analyze returns, and monitor market trends in real-time.</p>
+                        <p><strong>Key Contributions:</strong> Built reusable UI components and implemented secure authentication flows.</p>
+                        <div class="technologies">
+                            <span class="tech-tag">React.js</span>
+                            <span class="tech-tag">Redux</span>
+                            <span class="tech-tag">Material UI</span>
+                            <span class="tech-tag">REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">Healthcare Portal</div>
+                    <div class="project-content">
+                        <h3>Patient Management System</h3>
+                        <p>An Angular-based healthcare portal allowing providers to manage patient records, appointments, and insurance information with intuitive interfaces.</p>
+                        <p><strong>Key Contributions:</strong> Migrated legacy system to Angular 2 and implemented responsive design.</p>
+                        <div class="technologies">
+                            <span class="tech-tag">Angular 2</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Bootstrap</span>
+                            <span class="tech-tag">RESTful APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="summary-container">
+                <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to contact me through any of the channels below.</p>
+                <div style="display: flex; justify-content: center; gap: 24px; margin-top: 32px;">
+                    <a href="mailto:tejamaram445@gmail.com" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; color: var(--primary-color);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <span style="margin-top: 8px; font-weight: 500;">Email</span>
+                        <span style="color: var(--light-text); font-size: 14px;">tejamaram445@gmail.com</span>
+                    </a>
+                    
+                    <a href="tel:9379850156" style="text-decoration: none; display: flex; flex-direction: column; align-items: center; color: var(--primary-color);">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span style="margin-top: 8px; font-weight: 500;">Phone</span>
+                        <span style="color: var(--light-text); font-size: 14px;">937-985-0156</span>
+                    </a>
+                    
+                    <a href="#" style="text-decoration: none; display:
